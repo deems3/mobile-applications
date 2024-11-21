@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="TruthOrDrinkDemiBruls.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:TruthOrDrinkDemiBruls"
+    xmlns:Views="clr-namespace:TruthOrDrinkDemiBruls.Views"
+    Shell.FlyoutBehavior="Flyout"
+    Title="TruthOrDrinkDemiBruls">
+
+    <ShellContent
+        Title="Login"
+        ContentTemplate="{DataTemplate Views:Login}"
+        Route="Login" />
+
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate Views:MainPage}"
+        Route="MainPage" />
+
+    <ShellContent
+        Title="Oefenen"
+        ContentTemplate="{DataTemplate Views:Oefenen}"
+        Route="Oefenen" />
+
+
+
+</Shell>
