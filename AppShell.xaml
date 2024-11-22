@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:TruthOrDrinkDemiBruls"
     xmlns:Views="clr-namespace:TruthOrDrinkDemiBruls.Views"
-    Shell.FlyoutBehavior="Flyout"
+    Shell.FlyoutBehavior="Disabled"
     Title="TruthOrDrinkDemiBruls">
 
     <ShellContent
@@ -17,6 +17,11 @@
         Title="Home"
         ContentTemplate="{DataTemplate Views:MainPage}"
         Route="MainPage" />
+
+    <ShellContent
+        Title="Lobby"
+        ContentTemplate="{DataTemplate Views:Lobby}"
+        Route="Lobby" />
 
     <ShellContent
         Title="Oefenen"

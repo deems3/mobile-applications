@@ -10,6 +10,7 @@ namespace TruthOrDrinkDemiBruls
 
             Routing.RegisterRoute("Login", typeof(Login));
             Routing.RegisterRoute("Home", typeof(MainPage));
+            Routing.RegisterRoute("Lobby", typeof(Lobby));
             Routing.RegisterRoute("Oefenen", typeof(Oefenen));
         }
     }
