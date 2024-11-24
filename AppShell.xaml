@@ -24,6 +24,11 @@
         Route="Lobby" />
 
     <ShellContent
+        Title="GameRules"
+        ContentTemplate="{DataTemplate Views:GameRules}"
+        Route="GameRuls" />
+
+    <ShellContent
         Title="Oefenen"
         ContentTemplate="{DataTemplate Views:Oefenen}"
         Route="Oefenen" />

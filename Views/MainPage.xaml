@@ -18,6 +18,12 @@
                 Text="Start een spel" 
                 Clicked="CreateGame" />
 
+            <Button  x:Name="GameRulesBtn"
+                Text="Spelregels" 
+                Clicked="ReadRules" />
+
+
+
 
         </VerticalStackLayout>
     </ScrollView>
