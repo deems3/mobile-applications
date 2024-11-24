@@ -11,7 +11,9 @@ public partial class Lobby : ContentPage
         QRCodeGenerator qrCodeGenerator = new QRCodeGenerator();
 
         //ECCLevel = error correction level. Its possible to scan QR code even when its blurry.
-        QRCodeData qrCodeData = qrCodeGenerator.CreateQrCode("1234", QRCodeGenerator.ECCLevel.L);
+        // Guid = unique string. ("n" specifies that no hyphens ("-") will be used
+        // Guid is normally 32 chars long but the .. gives the opportunity to pick the first x chars
+        QRCodeData qrCodeData = qrCodeGenerator.CreateQrCode(Guid.NewGuid().ToString("N")[..6], QRCodeGenerator.ECCLevel.L);
 
         //Create the QRcode with pngBytes
         PngByteQRCode qrCode = new PngByteQRCode(qrCodeData);
