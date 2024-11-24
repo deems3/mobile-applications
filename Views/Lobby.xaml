@@ -15,6 +15,11 @@
             HorizontalOptions="Center"
             FontSize="Large"/>
 
+        <Button
+            x:Name="ContinueBtn"
+            Text="Verder"
+            Clicked="GoToGameOptions"/>
+
 
     </VerticalStackLayout>
 </ContentPage>

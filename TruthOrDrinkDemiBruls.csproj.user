@@ -14,6 +14,9 @@
     <MauiXaml Update="Views\CustomQuestions.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
+    <MauiXaml Update="Views\GameOptions.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="Views\GameRules.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>

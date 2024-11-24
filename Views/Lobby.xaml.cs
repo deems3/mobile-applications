@@ -23,4 +23,9 @@ public partial class Lobby : ContentPage
 
         QRImage.Source = ImageSource.FromStream(() => new MemoryStream(qrCodeBytes));
     }
+
+    private async void GoToGameOptions(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("GameOptions");
+    }
 }

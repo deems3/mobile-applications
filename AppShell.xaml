@@ -34,6 +34,11 @@
         Route="CustomQuestions" />
 
     <ShellContent
+        Title="GameOptions"
+        ContentTemplate="{DataTemplate Views:GameOptions}"
+        Route="GameOptions" />
+
+    <ShellContent
         Title="Oefenen"
         ContentTemplate="{DataTemplate Views:Oefenen}"
         Route="Oefenen" />
