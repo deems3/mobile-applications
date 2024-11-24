@@ -8,5 +8,24 @@
             Text="Welcome to .NET MAUI!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+
+        <Button
+            x:Name="ThemeBtn"
+            Text="Thema"
+            Clicked="GoToThemes"
+            Margin="20"/>
+
+        <Button
+            x:Name="QuestionsBtn"
+            Text="Vragen"
+            Clicked="GoToQuestions"
+            Margin="20"/>
+
+        <Button
+            x:Name="GameOverviewBtn"
+            Text="GameOverview"
+            Clicked="GoToGameOverview"
+            Margin="20"/>
+        
     </VerticalStackLayout>
 </ContentPage>

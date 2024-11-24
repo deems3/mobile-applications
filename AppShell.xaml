@@ -39,10 +39,23 @@
         Route="GameOptions" />
 
     <ShellContent
+        Title="Thema's"
+        ContentTemplate="{DataTemplate Views:Themes}"
+        Route="Themes" />
+
+    <ShellContent
+        Title="Soorten vragen"
+        ContentTemplate="{DataTemplate Views:Questions}"
+        Route="Questions" />
+
+    <ShellContent
         Title="Oefenen"
         ContentTemplate="{DataTemplate Views:Oefenen}"
         Route="Oefenen" />
 
-
+    <ShellContent
+        Title="GameOverview"
+        ContentTemplate="{DataTemplate Views:GameOverview}"
+        Route="GameOverview" />
 
 </Shell>

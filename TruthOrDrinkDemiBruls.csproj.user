@@ -17,6 +17,9 @@
     <MauiXaml Update="Views\GameOptions.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
+    <MauiXaml Update="Views\GameOverview.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="Views\GameRules.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
@@ -27,6 +30,12 @@
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="Views\Oefenen.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="Views\Questions.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="Views\Themes.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
   </ItemGroup>
