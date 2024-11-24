@@ -22,7 +22,9 @@
                 Text="Spelregels" 
                 Clicked="ReadRules" />
 
-
+            <Button  x:Name="CustomQuestionsBtn"
+                Text="Gepersonaliseerde vragen" 
+                Clicked="GoToCustomQuestions" />
 
 
         </VerticalStackLayout>

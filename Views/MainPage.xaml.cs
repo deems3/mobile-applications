@@ -18,5 +18,10 @@ namespace TruthOrDrinkDemiBruls.Views
         {
             await Shell.Current.GoToAsync("GameRules");
         }
+
+        private async void GoToCustomQuestions(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("CustomQuestions");
+        }
     }
 }
