@@ -10,9 +10,7 @@ public partial class Login : ContentPage
 	private async void LoginUser(object sender, EventArgs e)
 	{
 		// the // betekent: er is geen backbutton en de hardware backbutton die gaat ook niet terug naar de vorige pagina.
-		Vibration.Default.Vibrate(200);
+		Vibration.Default.Vibrate(1000);
 		await Shell.Current.GoToAsync("//MainPage");
     }
-
-
 }
