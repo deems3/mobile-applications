@@ -28,7 +28,7 @@
                     x:Name="UsernameEntry"
                     Placeholder="Username"
                     FontSize="Large"
-                    TextColor="White"
+                    TextColor="Black"
                     PlaceholderColor="Black"
                     HorizontalOptions="Center"/>
         </Border>
@@ -42,6 +42,7 @@
                     x:Name="PasswordEntry"
                     Placeholder="Password"
                     FontSize="Large"
+                    TextColor="Black"
                     PlaceholderColor="Black"
                     HorizontalOptions="Center"/>
         </Border>
