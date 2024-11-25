@@ -3,34 +3,56 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TruthOrDrinkDemiBruls.Views.Login"
              Title="Login"
-             BackgroundColor="MediumPurple">
+             BackgroundColor="#F9BEC7">
  
     <VerticalStackLayout>
         <Label 
-            Text="Login"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
         <AbsoluteLayout
             BackgroundColor="#C19EE0"/>
 
-        <Entry
-                x:Name="UsernameEntry"
-                Placeholder="Username"
-                FontSize="Large"
-                HorizontalOptions="Center"/>
+        <Image Source="loginphoto.png"
+               WidthRequest="200"
+               Margin="0, 20, 0, 0"/>
 
-        <Entry
-                x:Name="PasswordEntry"
-                Placeholder="Password"
-                FontSize="Large"
-                HorizontalOptions="Center"/>
+
+        <Border 
+            Stroke="#FF477E"
+            StrokeThickness="4"
+            StrokeShape="RoundRectangle 10,10,10,10"
+            Margin="20, 80, 20, 20">
+            
+            <Entry
+                    x:Name="UsernameEntry"
+                    Placeholder="Username"
+                    FontSize="Large"
+                    TextColor="White"
+                    PlaceholderColor="Black"
+                    HorizontalOptions="Center"/>
+        </Border>
+
+        <Border
+            Stroke="#FF477E"
+            StrokeThickness="4"
+            StrokeShape="RoundRectangle 10,10,10,10"
+            Margin="20, 10, 20, 100">
+            <Entry
+                    x:Name="PasswordEntry"
+                    Placeholder="Password"
+                    FontSize="Large"
+                    PlaceholderColor="Black"
+                    HorizontalOptions="Center"/>
+        </Border>
+
 
         <Button
             x:Name="LoginItem"
             Text="Login"
             FontSize="Large"
             Clicked="LoginUser"
+            BackgroundColor="#FF477E"
             Margin="20"/>
 
     </VerticalStackLayout>
