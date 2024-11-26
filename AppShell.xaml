@@ -5,7 +5,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:TruthOrDrinkDemiBruls"
     xmlns:Views="clr-namespace:TruthOrDrinkDemiBruls.Views"
-    Shell.FlyoutBehavior="Disabled"
+    Shell.FlyoutBehavior="Flyout"
+    FlyoutBackgroundColor="#F9BEC7"
+    Shell.BackgroundColor="#F9BEC7"
     Title="TruthOrDrinkDemiBruls">
 
     <ShellContent
@@ -24,17 +26,17 @@
         Route="Lobby" />
 
     <ShellContent
-        Title="GameRules"
+        Title="Spelregels"
         ContentTemplate="{DataTemplate Views:GameRules}"
         Route="GameRuls" />
 
     <ShellContent
-        Title="CustomQuestions"
+        Title="Gepersonaliseerde vragen"
         ContentTemplate="{DataTemplate Views:CustomQuestions}"
         Route="CustomQuestions" />
 
     <ShellContent
-        Title="GameOptions"
+        Title="Spel mogelijkheden"
         ContentTemplate="{DataTemplate Views:GameOptions}"
         Route="GameOptions" />
 
@@ -54,7 +56,7 @@
         Route="Oefenen" />
 
     <ShellContent
-        Title="GameOverview"
+        Title="Speloverzicht"
         ContentTemplate="{DataTemplate Views:GameOverview}"
         Route="GameOverview" />
 
