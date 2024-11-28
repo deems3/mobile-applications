@@ -41,6 +41,9 @@
     <MauiXaml Update="Views\Questions.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
+    <MauiXaml Update="Views\TheEndPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="Views\Themes.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>

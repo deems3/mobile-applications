@@ -97,6 +97,9 @@
 	  <MauiXaml Update="Views\Questions.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\TheEndPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Themes.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

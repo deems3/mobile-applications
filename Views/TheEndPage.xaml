@@ -1,25 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TruthOrDrinkDemiBruls.Views.WaitPage"
-             Title="WaitPage">
+             x:Class="TruthOrDrinkDemiBruls.Views.TheEndPage"
+             Title="TheEndPage">
     <VerticalStackLayout>
         <Label 
-            Text="Wachten.."
+            Text="The End"
             FontSize="Large"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
         <Button
-            x:Name="NextQuestion"
-            Text="Volgende vraag"
-            Clicked="GoToNextQuestion"
-            Margin="20"/>
-
-        <Button
-            x:Name="StopGame"
-            Text="Stop spel"
-            Clicked="GoToTheEnd"
+            x:Name="NewGameBtn"
+            Text="Start een nieuw spel"
+            Clicked="GoToMain"
             Margin="20"/>
     </VerticalStackLayout>
 </ContentPage>

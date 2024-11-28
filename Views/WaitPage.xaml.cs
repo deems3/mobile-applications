@@ -13,8 +13,8 @@ public partial class WaitPage : ContentPage
         await Shell.Current.GoToAsync("GameQuestions");
     }
 
-    private async void GoToMain(object sender, EventArgs e)
+    private async void GoToTheEnd(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("Home");
+        await Shell.Current.GoToAsync("TheEndPage");
     }
 }

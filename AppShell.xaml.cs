@@ -21,7 +21,7 @@ namespace TruthOrDrinkDemiBruls
             Routing.RegisterRoute("Intensity", typeof(Intensity));
             Routing.RegisterRoute("GameQuestions", typeof(GameQuestions));
             Routing.RegisterRoute("WaitPage", typeof(WaitPage));
-
+            Routing.RegisterRoute("TheEndPage", typeof(TheEndPage));
         }
     }
 }
