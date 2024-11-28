@@ -9,6 +9,6 @@ public partial class GameOverview : ContentPage
 
     private async void StartGame(object sender, EventArgs e)
     {
-		await Shell.Current.GoToAsync("GameQuestions");
+		await Shell.Current.GoToAsync("//GameQuestions");
     }
 }
