@@ -56,8 +56,19 @@
         Route="Oefenen" />
 
     <ShellContent
+        Title="Gewaagdheidslevel"
+        ContentTemplate="{DataTemplate Views:Intensity}"
+        Route="Intensity" />
+
+    <ShellContent
         Title="Speloverzicht"
         ContentTemplate="{DataTemplate Views:GameOverview}"
         Route="GameOverview" />
+
+
+    <ShellContent
+        Title="Vraag"
+        ContentTemplate="{DataTemplate Views:GameQuestions}"
+        Route="GameQuestions" />
 
 </Shell>

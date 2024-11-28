@@ -22,8 +22,14 @@
             Margin="20"/>
 
         <Button
+            x:Name="IntensityBtn"
+            Text="Gewaagdheidslevel"
+            Clicked="GoToIntensity"
+            Margin="20"/>
+
+        <Button
             x:Name="GameOverviewBtn"
-            Text="GameOverview"
+            Text="Speloverzicht"
             Clicked="GoToGameOverview"
             Margin="20"/>
         

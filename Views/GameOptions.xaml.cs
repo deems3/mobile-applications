@@ -21,4 +21,9 @@ public partial class GameOptions : ContentPage
     {
         await Shell.Current.GoToAsync("GameOverview");
     }
+
+    private async void GoToIntensity(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("Intensity");
+    }
 }
