@@ -9,5 +9,17 @@
             FontSize="Large"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+
+        <Button
+            x:Name="NextQuestion"
+            Text="Volgende vraag"
+            Clicked="GoToNextQuestion"
+            Margin="20"/>
+
+        <Button
+            x:Name="StopGame"
+            Text="Stop spel"
+            Clicked="GoToMain"
+            Margin="20"/>
     </VerticalStackLayout>
 </ContentPage>
