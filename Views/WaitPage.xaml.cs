@@ -10,7 +10,7 @@ public partial class WaitPage : ContentPage
 
     private async void GoToNextQuestion(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("GameQuestions");
+        await Shell.Current.GoToAsync("//GameQuestions");
     }
 
     private async void GoToTheEnd(object sender, EventArgs e)
