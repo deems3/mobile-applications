@@ -5,8 +5,25 @@
              Title="GameQuestions">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="De vraag is:"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+
+        <Label 
+            Text="De vraag is voor:"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <Button
+            x:Name="TruthBtn"
+            Text="Truth"
+            Clicked="GoToWaitPage"
+            Margin="20"/>
+
+        <Button
+            x:Name="DrinkBtn"
+            Text="Drink"
+            Clicked="GoToWaitPage"
+            Margin="20"/>
     </VerticalStackLayout>
 </ContentPage>

@@ -71,4 +71,9 @@
         ContentTemplate="{DataTemplate Views:GameQuestions}"
         Route="GameQuestions" />
 
+    <ShellContent
+        Title="Wachten"
+        ContentTemplate="{DataTemplate Views:WaitPage}"
+        Route="WaitPage" />
+
 </Shell>

@@ -44,6 +44,9 @@
     <MauiXaml Update="Views\Themes.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
+    <MauiXaml Update="Views\WaitPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
   </ItemGroup>
   <ItemGroup>
     <None Update="App.xaml">
