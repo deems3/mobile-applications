@@ -2,11 +2,43 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TruthOrDrinkDemiBruls.Views.GameRules"
-             Title="GameRules">
+             Title="Spelregels">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Label
+            Text="De oudste persoon begint"
+            VerticalOptions="Center"/>
+
+        <Label
+            Text="Start een spel"
+            VerticalOptions="Center"/>
+
+        <Label
+            Text="Voeg je vrienden toe"
+            VerticalOptions="Center"/>
+
+        <Label
+            Text="Kies een thema"
+            VerticalOptions="Center"/>
+
+        <Label
+            Text="Kies je soort vragen"
+            VerticalOptions="Center"/>
+
+        <Label
+            Text="Bekijk de vraag en lees hard op"
+            VerticalOptions="Center"/>
+
+        <Label
+            Text="Beantwoord de vraag of neem een drankje"
+            VerticalOptions="Center"/>
+
+        <Label
+            Text="Ga door tot het einde"
+            VerticalOptions="Center"/>
+
+        <Label
+            Text="Start een nieuw spel of sluit af."
+            VerticalOptions="Center"/>
+
     </VerticalStackLayout>
 </ContentPage>
