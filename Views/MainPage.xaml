@@ -15,7 +15,9 @@
                 SemanticProperties.Description="dot net bot in a hovercraft number nine" />
 
             <Button  x:Name="SessionBtn"
-                Text="Start een spel" 
+                Text="Start een spel"
+                     BackgroundColor="White"
+                     TextColor="Black"
                 Clicked="CreateGame" />
 
             <Button  x:Name="GameRulesBtn"
