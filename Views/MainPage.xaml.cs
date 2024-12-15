@@ -6,7 +6,6 @@ namespace TruthOrDrinkDemiBruls.Views
         public MainPage()
         {
             InitializeComponent();
-
         }
 
         private async void CreateGame(object sender, EventArgs e)

@@ -28,7 +28,6 @@
                 Text="Gepersonaliseerde vragen" 
                 Clicked="GoToCustomQuestions" />
 
-
         </VerticalStackLayout>
     </ScrollView>
 
