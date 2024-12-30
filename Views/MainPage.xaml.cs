@@ -1,4 +1,7 @@
 ﻿using QRCoder;
+using SQLiteBrowser;
+using TruthOrDrinkDemiBruls.Database;
+using TruthOrDrinkDemiBruls.Models;
 namespace TruthOrDrinkDemiBruls.Views
 {
     public partial class MainPage : ContentPage
@@ -21,6 +24,11 @@ namespace TruthOrDrinkDemiBruls.Views
         private async void GoToCustomQuestions(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync("CustomQuestions");
+        }
+
+        private async void OpenDatabaseBrowser(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new DatabaseBrowserPage(Helper.GetDbPath("truth_or_drink_demi.db")));
         }
     }
 }

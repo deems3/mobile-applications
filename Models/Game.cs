@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TruthOrDrinkDemiBruls.Models
 {
-    internal class Game
+    public class Game
     {
         public int Id { get; set; }
         public string Code { get; set; } = null!;

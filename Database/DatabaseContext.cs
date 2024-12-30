@@ -8,7 +8,7 @@ using TruthOrDrinkDemiBruls.Models;
 
 namespace TruthOrDrinkDemiBruls.Database;
 
-internal class DatabaseContext : DbContext
+public class DatabaseContext : DbContext
 {
     public DbSet<Theme> Themes { get; set; } = null!;
     public DbSet<Question> Questions { get; set; } = null!;

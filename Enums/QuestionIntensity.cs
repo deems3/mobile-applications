@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TruthOrDrinkDemiBruls.Enums
 {
-    internal enum QuestionIntensity
+    public enum QuestionIntensity
     {
         Easy,
         Average,

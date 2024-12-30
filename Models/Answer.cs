@@ -8,7 +8,7 @@ using TruthOrDrinkDemiBruls.Enums;
 
 namespace TruthOrDrinkDemiBruls.Models
 {
-    internal class Answer
+    public class Answer
     {
         public int Id { get; set; }
 

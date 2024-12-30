@@ -28,6 +28,8 @@
                 Text="Gepersonaliseerde vragen" 
                 Clicked="GoToCustomQuestions" />
 
+            <Button Text="Open Database Browser" Clicked="OpenDatabaseBrowser" />
+
         </VerticalStackLayout>
     </ScrollView>
 

@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using TruthOrDrinkDemiBruls.Database;
+using TruthOrDrinkDemiBruls.Views;
 
 namespace TruthOrDrinkDemiBruls
 {

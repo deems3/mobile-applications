@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace TruthOrDrinkDemiBruls.Models
 {
-    internal class Player
+    public class Player
     {
-        public int Id { get; set; }
+        public int Id { get; private set; }
         public string Name { get; set; } = null!;
 
         // relation to game entity

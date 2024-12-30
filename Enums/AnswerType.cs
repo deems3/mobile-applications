@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TruthOrDrinkDemiBruls.Enums
 {
-    internal enum AnswerType
+    public enum AnswerType
     {
         Truth,
         Drink
