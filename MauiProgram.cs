@@ -6,6 +6,11 @@ namespace TruthOrDrinkDemiBruls
 {
     public static class MauiProgram
     {
+        public static void Main(string[] args)
+        {
+            // Placeholder to satisfy the runtime.
+        }
+
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();

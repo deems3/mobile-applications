@@ -11,7 +11,7 @@ namespace TruthOrDrinkDemiBruls.Models
     internal class Question
     {
         public int Id { get; set; }
-        public string Description { get; set; }
+        public string Description { get; set; } = null!;
 
         // column VARCHAR because enum normally indicates integers and now it has to be a status "string" so its readable in DB.
         [Column(TypeName ="VARCHAR(255)")]
@@ -23,5 +23,7 @@ namespace TruthOrDrinkDemiBruls.Models
         // relation to player entity no icollection because the question is linked to one player (optional)
         public int PlayerId { get; set; }
         public Player? Player { get; set; }
+
+        public ICollection<GameQuestion> GameQuestions { get; set; } = [];
     }
 }

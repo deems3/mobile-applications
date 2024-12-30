@@ -9,10 +9,10 @@ namespace TruthOrDrinkDemiBruls.Models
     internal class Game
     {
         public int Id { get; set; }
-        public string Code { get; set; }
+        public string Code { get; set; } = null!;
 
         public ICollection<Player> Players { get; set; } = [];
 
-        public ICollection<Question> Questions { get; set; } = [];
+        public ICollection<GameQuestion> GameQuestions { get; set; } = [];
     }
 }

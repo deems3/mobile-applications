@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TruthOrDrinkDemiBruls.Enums;
 
 namespace TruthOrDrinkDemiBruls.Models
 {
-    internal class Theme
+    internal class Answer
     {
         public int Id { get; set; }
-        public string Name { get; set; } = null!;
 
-        // relation to question entity
-        public ICollection<Question> Questions { get; set; } = [];
+        [Column(TypeName ="VARCHAR(255)")]
+        public AnswerType Type { get; set; }
     }
 }
