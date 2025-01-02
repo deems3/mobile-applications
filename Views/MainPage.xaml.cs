@@ -1,7 +1,6 @@
 ﻿using QRCoder;
 using SQLiteBrowser;
 using TruthOrDrinkDemiBruls.Database;
-using TruthOrDrinkDemiBruls.Models;
 namespace TruthOrDrinkDemiBruls.Views
 {
     public partial class MainPage : ContentPage

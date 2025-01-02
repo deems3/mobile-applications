@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:TruthOrDrinkDemiBruls.ViewModels"
              x:Class="TruthOrDrinkDemiBruls.Views.Lobby"
              Title="Lobby">
     <VerticalStackLayout>
@@ -15,11 +16,34 @@
             HorizontalOptions="Center"
             FontSize="Large"/>
 
+        <!-- Display the list of players -->
+        <CollectionView x:Name="PlayersCollectionView" ItemsSource="{Binding PlayersForDisplay}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <FlexLayout Padding="10" AlignItems="Center" Margin="0, 0, 20, 0">
+                        <Label Text="{Binding Name}" FontSize="20" FlexLayout.Basis="50%"/>
+                        <Button
+                            x:Name="DeleteBtn"
+                            Text="Verwijderen"
+                            FlexLayout.Basis="50%"
+                            CommandParameter="{Binding Name}"
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:LobbyViewModel}}, Path=DeletePlayerCommand}" />
+                    </FlexLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button
+            x:Name="AddPlayerBtn"
+            Margin="0, 20, 0, 0"
+            Text="Voeg speler toe"
+            Clicked="ShowAddPlayerInput"/>
+        
+        <!-- TODO GRID -->
         <Button
             x:Name="ContinueBtn"
             Text="Verder"
+            Margin="0, 50, 0, 0"
             Clicked="GoToGameOptions"/>
-
-
     </VerticalStackLayout>
 </ContentPage>
