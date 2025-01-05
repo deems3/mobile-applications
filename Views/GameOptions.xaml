@@ -32,6 +32,6 @@
             Text="Speloverzicht"
             Clicked="GoToGameOverview"
             Margin="20"/>
-        
+
     </VerticalStackLayout>
 </ContentPage>

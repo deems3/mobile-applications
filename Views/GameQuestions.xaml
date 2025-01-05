@@ -17,13 +17,13 @@
         <Button
             x:Name="TruthBtn"
             Text="Truth"
-            Clicked="GoToWaitPage"
+            Clicked="GoToWaitPageTruth"
             Margin="20"/>
 
         <Button
             x:Name="DrinkBtn"
             Text="Drink"
-            Clicked="GoToWaitPage"
+            Clicked="GoToWaitPageDrink"
             Margin="20"/>
     </VerticalStackLayout>
 </ContentPage>

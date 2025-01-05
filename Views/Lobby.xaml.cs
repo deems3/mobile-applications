@@ -56,10 +56,19 @@ public partial class Lobby : ContentPage
 
     private async void GoToGameOptions(object sender, EventArgs e)
     {
+        if (Game.Players.Count == 0)
+        {
+            // TODO: show an erro message indicating that the game requires at least two players
+            return;
+        }
+
         _context.Games.Add(Game);
         _context.SaveChanges();
 
-        await Shell.Current.GoToAsync("GameOptions");
+        await Shell.Current.GoToAsync(nameof(GameOptions), new Dictionary<string, object>
+        {
+            { "Game", Game },
+        });
     }
 
     private async void ShowAddPlayerInput(object sender, EventArgs e)

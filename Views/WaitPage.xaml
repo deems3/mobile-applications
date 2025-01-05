@@ -10,6 +10,8 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
+        <Image Source="{Binding ImgUrl}" IsAnimationPlaying="True"/>
+
         <Button
             x:Name="NextQuestion"
             Text="Volgende vraag"

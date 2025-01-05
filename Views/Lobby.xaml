@@ -39,7 +39,7 @@
             Text="Voeg speler toe"
             Clicked="ShowAddPlayerInput"/>
         
-        <!-- TODO GRID -->
+        <!-- TODO: pass in the current game to the new view -->
         <Button
             x:Name="ContinueBtn"
             Text="Verder"
