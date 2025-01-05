@@ -1,11 +1,14 @@
 using TruthOrDrinkDemiBruls.Responses;
+using TruthOrDrinkDemiBruls.ViewModels;
 
 namespace TruthOrDrinkDemiBruls.Views;
 
 [QueryProperty(nameof(Image), "Image")]
 public partial class WaitPage : ContentPage
 {
-    public string ImgUrl { get; private set; }
+    public string ImgUrl { get; set; }
+
+    public WaitingPageViewModel ViewModel { get; set; }
     public GiphyImage Image
     {
         set
@@ -16,8 +19,10 @@ public partial class WaitPage : ContentPage
 
 	public WaitPage()
 	{
+        ViewModel = new();
 		InitializeComponent();
-        BindingContext = this;
+        // Set the viewmodel to be the bindingcontext
+        BindingContext = ViewModel;
 	}
 
     private async void GoToNextQuestion(object sender, EventArgs e)
@@ -32,6 +37,7 @@ public partial class WaitPage : ContentPage
 
     private void SetImageUrl(GiphyImage image)
     {
-        ImgUrl = image.Url();
+        // Set the image url in the viewmodel
+        ViewModel.ImageUrl = image.Url();
     }
 }

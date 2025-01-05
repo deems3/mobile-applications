@@ -1,13 +1,10 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
-using System.Net.Http.Json;
-using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 using TruthOrDrinkDemiBruls.Config;
 using TruthOrDrinkDemiBruls.Responses;
 
 namespace TruthOrDrinkDemiBruls.Client;
 
+// This class is responsible for communication with Giphy
 public class GiphyClient(HttpClient httpClient, GiphyConfig giphyConfig)
 {
     private const string BaseUrl = "https://api.giphy.com/v1/gifs";
@@ -22,9 +19,12 @@ public class GiphyClient(HttpClient httpClient, GiphyConfig giphyConfig)
     /// <returns></returns>
     public async Task<GiphyRandomResponse> Random(string searchParamm, string rating = "pg", int amount = 1)
     {
+        // Make an HTTP GET request to Giphy
         var response = await httpClient.GetAsync($"{BaseUrl}/{SearchEndpoint}?tag={searchParamm}&rating={rating}&api_key={GetApiKey()}");
 
+        // Read the response as a string
         var content = await response.Content.ReadAsStringAsync();
+        // Convert the string (json) response to an object so we can access its values
         var parsed = JsonConvert.DeserializeObject<GiphyRandomResponse>(content);
 
         if (parsed is null)

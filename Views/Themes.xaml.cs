@@ -15,6 +15,7 @@ public partial class Themes : ContentPage
 
 	public Themes(DatabaseContext context)
 	{
+		// Get all themes from the databse that has not already been selected
 		AvailableTheme = context.Themes.Where(t => !InitialThemes.Contains(t)).ToList();
 		InitializeComponent();
 	}

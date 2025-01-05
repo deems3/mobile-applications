@@ -5,8 +5,10 @@ using TruthOrDrinkDemiBruls.ViewModels;
 
 namespace TruthOrDrinkDemiBruls.Views;
 
+// Query properties are needed in order to pass parameters to this view when navigating
+// First parameter is the name of the property on this class, the second parameter is the name of the parameter when navigating (see line 44 for an example)
 [QueryProperty(nameof(Game), "Game")]
-[QueryProperty(nameof(ICollection<Theme>), "Themes")]
+[QueryProperty(nameof(Themes), "Themes")]
 public partial class GameOptions : ContentPage
 {
     public Game Game
@@ -69,9 +71,10 @@ public partial class GameOptions : ContentPage
 
     private void SetThemes(ICollection<Theme> themes)
     {
+        // If no themes are provided when navigating to this view, set the selected themes to be an empty ObservableCollection
         if (themes.Count == 0)
         {
-            ViewModel.SelectedThemes = [];
+            ViewModel.SelectedThemes = new ObservableCollection<Theme>();
             return;
         }
 

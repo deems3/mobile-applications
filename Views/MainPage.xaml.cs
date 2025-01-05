@@ -25,6 +25,7 @@ namespace TruthOrDrinkDemiBruls.Views
             await Shell.Current.GoToAsync("CustomQuestions");
         }
 
+        // Action to open the database browser
         private async void OpenDatabaseBrowser(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new DatabaseBrowserPage(Helper.GetDbPath("truth_or_drink_demi.db")));

@@ -13,7 +13,10 @@ public partial class GameQuestions : ContentPage
 
     private async void GoToWaitPageTruth(object sender, EventArgs e)
     {
+        // Get an image from Giphy
         var img = await giphy.Random("telling truth");
+
+        // Provide the image as a QueryProperty to the WaitPage view
         await Shell.Current.GoToAsync("WaitPage", new Dictionary<string, object>
         {
             { "Image", img.Data }
