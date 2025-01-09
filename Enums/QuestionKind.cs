@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace TruthOrDrinkDemiBruls.Enums
 {
-    public enum QuestionIntensity
+    public enum QuestionKind
     {
-        Easy,
-        Average,
-        Challenging,
-        Daring,
-        Extreme,
-        Unspecified
+        Unspecified,
+        Personalised,
+        Generated,
+        Both
     }
 }

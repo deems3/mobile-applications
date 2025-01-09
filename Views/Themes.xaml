@@ -8,5 +8,27 @@
             Text="Kies hieronder je favoriete thema('s):"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+
+        <CollectionView x:Name="AvailableThemesCollectionView"
+                        ItemsSource="{Binding AvailableThemes}"
+                        SelectionMode="Multiple"
+                        SelectedItems="{Binding InitialThemes}"
+                        SelectionChanged="ThemeSelectionChanged"
+                        >
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <FlexLayout Padding="15" AlignItems="Center" Margin="0, 0, 20, 0">
+                        <Label Text="{Binding Name}" FontSize="20"/>
+                    </FlexLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button x:Name="GoToGameOptionsbtn"
+                Clicked="GoToGameOptions"
+                Margin="20"
+                Text="Gereed"
+                />
+
     </VerticalStackLayout>
 </ContentPage>

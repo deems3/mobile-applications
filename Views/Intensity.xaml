@@ -8,5 +8,21 @@
             Text="Welcome to .NET MAUI!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+
+        <CollectionView x:Name="QuestionIntensityCollectionView"
+                        ItemsSource="{Binding AvailableQuestionIntensities}"
+                        SelectionMode="Single"
+                        SelectedItem="{Binding SelectedQuestionIntensity}"
+                        SelectionChanged="QuestionIntensitChanged">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <FlexLayout Padding="15" AlignItems="Center" Margin="0, 0, 20, 0">
+                        <Label Text="{Binding}" FontSize="20"/>
+                    </FlexLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button Text="Gereed" Clicked="GoToGameOptions"/>
     </VerticalStackLayout>
 </ContentPage>

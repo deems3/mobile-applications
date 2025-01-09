@@ -2,11 +2,43 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TruthOrDrinkDemiBruls.Views.Questions"
-             Title="Soort vragen">
+             Title="Vragen">
     <VerticalStackLayout>
         <Label 
             Text="Voorgestelde vragen of gepersonaliseerde vragen"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+
+        <CollectionView x:Name="QuestionKindCollectionView"
+                        ItemsSource="{Binding QuestionKinds}"
+                        SelectionMode="Single"
+                        SelectedItem="{Binding QuestionKind}"
+                        SelectionChanged="QuestionKindChanged">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <FlexLayout Padding="15" AlignItems="Center" Margin="0, 0, 20, 0">
+                        <Label Text="{Binding}" FontSize="20"/>
+                    </FlexLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Grid Margin="15" RowSpacing="10" ColumnSpacing="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label Text="Aantal vragen" Grid.Row="0" Grid.Column="0"/>
+            <Slider Minimum="4" Maximum="20" Grid.Row="1" Grid.Column="0" ValueChanged="QuestionAmountChanged" FlexLayout.Basis="75%"/>
+            <Label Text="{Binding QuestionAmount}" Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="End" FlexLayout.Basis="25%"/>
+        </Grid>
+
+        <Button Text="Gereed" Clicked="GoToGameOptions"/>
     </VerticalStackLayout>
 </ContentPage>

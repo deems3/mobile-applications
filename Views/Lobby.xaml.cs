@@ -74,6 +74,11 @@ public partial class Lobby : ContentPage
     private async void ShowAddPlayerInput(object sender, EventArgs e)
     {
         var data = await DisplayPromptAsync("Speler toevoegen", "Speler naam", accept: "Toevoegen", cancel: "Annuleren");
+        if (data is null)
+        {
+            return;
+        }
+
         // Get the player from the database if it exists, otherwise create a new Player entity
         var player = await _context.Players.FirstOrDefaultAsync(x => x.Name.ToLower() == data.ToLower()) ?? new Player
         {
