@@ -5,9 +5,46 @@
              Title="Voorgesteld spel overzicht: ">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="Deze opties heb je gekozen"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+
+        <FlexLayout Margin="20" Direction="Row" Wrap="Wrap">
+            <FlexLayout.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="FlexLayout.Basis" Value="50%" />
+                </Style>
+                <Style TargetType="CollectionView">
+                    <Setter Property="FlexLayout.Basis" Value="50%" />
+                </Style>
+            </FlexLayout.Resources>
+
+            <Label Text="Soort vragen"/>
+            <Label Text="{Binding QuestionKind}"/>
+
+            <Label Text="Gewaagdheid vragen" />
+            <Label Text="{Binding QuestionIntensity}"/>
+
+            <Label Text="Aantal vragen" />
+            <Label Text="{Binding QuestionAmount}"/>
+
+            <Label Text="Gekozen thema's" />
+
+            <CollectionView x:Name="ThemesCollectionView"
+                            ItemsSource="{Binding Themes}"
+                            >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <FlexLayout Padding="15" AlignItems="Center" Margin="0, 0, 20, 0">
+                            <Label Text="{Binding Name}" FontSize="20"/>
+                        </FlexLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label Text="Aantal vragen" />
+            <Label Text="{Binding QuestionAmount}"/>
+        </FlexLayout>
 
         <Button
             x:Name="GameBtn"

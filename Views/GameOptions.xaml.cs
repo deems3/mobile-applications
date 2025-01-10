@@ -1,17 +1,19 @@
 using System.Collections.ObjectModel;
 using TruthOrDrinkDemiBruls.Client;
 using TruthOrDrinkDemiBruls.Enums;
+using QuestionIntensityEnum = TruthOrDrinkDemiBruls.Enums.QuestionIntensity;
+using QuestionKindEnum = TruthOrDrinkDemiBruls.Enums.QuestionKind;
 using TruthOrDrinkDemiBruls.Models;
 using TruthOrDrinkDemiBruls.ViewModels;
 
 namespace TruthOrDrinkDemiBruls.Views;
 
 // Query properties are needed in order to pass parameters to this view when navigating
-// First parameter is the name of the property on this class, the second parameter is the name of the parameter when navigating (see line 44 for an example)
+// First parameter is the type of the property, the second parameter is the name of the parameter when navigating (which is also the name of the property on the class) (see line 44 for an example)
 [QueryProperty(nameof(Game), "Game")]
 [QueryProperty(nameof(List<Theme>), "Themes")]
-[QueryProperty(nameof(QuestionKind), "QuestionKind")]
-[QueryProperty(nameof(QuestionIntensity), "QuestionIntensity")]
+[QueryProperty(nameof(QuestionKindEnum), "QuestionKind")]
+[QueryProperty(nameof(QuestionIntensityEnum), "QuestionIntensity")]
 [QueryProperty(nameof(Int32), "QuestionAmount")]
 public partial class GameOptions : ContentPage
 {
@@ -25,15 +27,22 @@ public partial class GameOptions : ContentPage
 
     public ICollection<Theme> Themes
     {
+        get => ViewModel.SelectedThemes;
         set
         {
             SetThemes(value);
         }
     }
 
-    public QuestionKind QuestionKind { get; set; }
-    public QuestionIntensity QuestionIntensity { get; set; }
-    public int QuestionAmount { get; set; } = 4;
+    public QuestionKindEnum QuestionKind { 
+        get => ViewModel.QuestionKind; 
+        set
+        {
+            ViewModel.QuestionKind = value;
+        }
+    }
+    public QuestionIntensityEnum QuestionIntensity { get; set; }
+    public int QuestionAmount { get; set; }
     public Game Game { get; set; }
 
     public GameOptionsViewModel ViewModel { get; private set; }
@@ -73,10 +82,10 @@ public partial class GameOptions : ContentPage
                 { "QuestionAmount", QuestionAmount },
                 { "QuestionIntensity", QuestionIntensity },
                 { "QuestionKind", QuestionKind switch {
-                    QuestionKind.Personalised => "Gepersonaliseerde vragen",
-                    QuestionKind.Generated => "Gegenereerde vragen",
-                    QuestionKind.Both => "Beide",
-                        _ => string.Empty
+                    QuestionKindEnum.Personalised => "Gepersonaliseerde vragen",
+                    QuestionKindEnum.Generated => "Gegenereerde vragen",
+                    QuestionKindEnum.Both => "Beide",
+                    _ => string.Empty
                     }
                 }
             }
@@ -85,7 +94,17 @@ public partial class GameOptions : ContentPage
 
     private async void GoToGameOverview(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("GameOverview");
+        await Shell.Current.GoToAsync(
+            "GameOverview",
+            new Dictionary<string, object>
+            {
+                { "Game", ViewModel.Game },
+                { "Themes", ViewModel.SelectedThemes.ToList() },
+                { "QuestionAmount", QuestionAmount },
+                { "QuestionIntensity", QuestionIntensity },
+                { "QuestionKind", QuestionKind }
+            }
+        );
     }
 
     private async void GoToIntensity(object sender, EventArgs e)
@@ -102,11 +121,11 @@ public partial class GameOptions : ContentPage
                     "QuestionIntensity",
                     QuestionIntensity switch
                     {
-                        QuestionIntensity.Easy => "Gemakkelijk",
-                        QuestionIntensity.Average => "Gemiddeld",
-                        QuestionIntensity.Challenging => "Moeilijk",
-                        QuestionIntensity.Daring => "Uitdagend",
-                        QuestionIntensity.Extreme => "Extreem",
+                        QuestionIntensityEnum.Easy => "Gemakkelijk",
+                        QuestionIntensityEnum.Average => "Gemiddeld",
+                        QuestionIntensityEnum.Challenging => "Moeilijk",
+                        QuestionIntensityEnum.Daring => "Uitdagend",
+                        QuestionIntensityEnum.Extreme => "Extreem",
                         _ => string.Empty
                     }
                 }

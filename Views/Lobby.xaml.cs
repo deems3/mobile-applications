@@ -51,6 +51,11 @@ public partial class Lobby : ContentPage
         PlayersForDisplay = new ObservableCollection<Player>();
 
         viewModel = new LobbyViewModel(Game);
+
+        // TODO: remove this, only present for development purposes
+        AddPlayer("k");
+        AddPlayer("j");
+
         BindingContext = viewModel;
     }
 
@@ -81,6 +86,19 @@ public partial class Lobby : ContentPage
 
         // Get the player from the database if it exists, otherwise create a new Player entity
         var player = await _context.Players.FirstOrDefaultAsync(x => x.Name.ToLower() == data.ToLower()) ?? new Player
+        {
+            Name = data
+        };
+
+        _context.Players.Update(player);
+
+        // Add the player to the viewmodel to show it is selected
+        viewModel.AddPlayer(player);
+    }
+
+    private void AddPlayer(string data)
+    {
+        var player =  _context.Players.FirstOrDefault(x => x.Name.ToLower() == data.ToLower()) ?? new Player
         {
             Name = data
         };

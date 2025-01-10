@@ -7,7 +7,7 @@ namespace TruthOrDrinkDemiBruls.Views;
 [QueryProperty(nameof(QuestionKind), "QuestionKind")]
 [QueryProperty(nameof(List<Theme>), "Themes")]
 [QueryProperty(nameof(Game), "Game")]
-[QueryProperty(nameof(String), "SelectedQuestionIntensity")]
+[QueryProperty(nameof(SelectedQuestionIntensity), "SelectedQuestionIntensity")]
 public partial class Intensity : ContentPage
 {
 	public int QuestionAmount { get; set; }
@@ -29,6 +29,12 @@ public partial class Intensity : ContentPage
 		InitializeComponent();
 		BindingContext = this;
 	}
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        Console.WriteLine($"Look at the {Bla}!");
+    }
 
     private void QuestionIntensitChanged(object sender, SelectionChangedEventArgs e)
     {

@@ -8,11 +8,11 @@ namespace TruthOrDrinkDemiBruls.Enums
 {
     public enum QuestionIntensity
     {
+        Unspecified,
         Easy,
         Average,
         Challenging,
         Daring,
-        Extreme,
-        Unspecified
+        Extreme
     }
 }

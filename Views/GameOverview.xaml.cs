@@ -1,14 +1,52 @@
+using System.ComponentModel;
+using TruthOrDrinkDemiBruls.Enums;
+using QuestionKindEnum = TruthOrDrinkDemiBruls.Enums.QuestionKind;
+using QuestionIntensityEnum = TruthOrDrinkDemiBruls.Enums.QuestionIntensity;
+using TruthOrDrinkDemiBruls.Models;
+
 namespace TruthOrDrinkDemiBruls.Views;
 
+[QueryProperty(nameof(Game), "Game")]
+[QueryProperty(nameof(Themes), "Themes")]
+[QueryProperty(nameof(QuestionAmount), "QuestionAmount")]
+[QueryProperty(nameof(QuestionKind), "QuestionKind")]
+[QueryProperty(nameof(QuestionIntensity), "QuestionIntensity")]
 public partial class GameOverview : ContentPage
 {
-	public GameOverview()
-	{
-		InitializeComponent();
-	}
+    public string QuestionKindString => QuestionKind switch
+    {
+        QuestionKindEnum.Personalised => "Gepersonaliseerde vragen",
+        QuestionKindEnum.Generated => "Gegenereerde vragen",
+        QuestionKindEnum.Both => "Beide",
+        _ => ""
+    };
+    public QuestionKindEnum QuestionKind { get; set; }
+    public string QuestionIntensityString => QuestionIntensity switch
+    {
+        QuestionIntensityEnum.Easy => "Gemakkelijk",
+        QuestionIntensityEnum.Average => "Gemiddeld",
+        QuestionIntensityEnum.Challenging => "Moeilijk",
+        QuestionIntensityEnum.Daring => "Uitdagend",
+        QuestionIntensityEnum.Extreme => "Extreem",
+        _ => string.Empty
+    };
+    public QuestionIntensityEnum QuestionIntensity { get; set; }
+    public int QuestionAmount { get; set; }
+    public Game Game { get; set; }
+    public List<Theme> Themes { get; set; }
+
+    public GameOverview()
+    {
+        InitializeComponent();
+        BindingContext = this;
+    }
 
     private async void StartGame(object sender, EventArgs e)
     {
-		await Shell.Current.GoToAsync("//GameQuestions");
+        // TODO: make call to ChatGpt for the game questions, create some type of ViewModel that contains the question amount etc, so we'll only have to pass one object in the game loop.
+        await Shell.Current.GoToAsync("//GameQuestions", new Dictionary<string, object>
+        {
+            { "Game", Game }
+        });
     }
 }
