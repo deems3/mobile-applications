@@ -28,6 +28,12 @@
                 Text="Gepersonaliseerde vragen" 
                 Clicked="GoToCustomQuestions" />
 
+            <Button  x:Name="ToggleMagneto"
+                Text="Toggle magnetometer" 
+                Clicked="ToggleMagnetometer" />
+
+            <Label x:Name="GyroscopeLabel"/>
+
             <Button Text="Open Database Browser" Clicked="OpenDatabaseBrowser" />
 
         </VerticalStackLayout>
