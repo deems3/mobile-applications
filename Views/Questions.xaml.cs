@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using TruthOrDrinkDemiBruls.Enums;
 using TruthOrDrinkDemiBruls.Models;
+using TruthOrDrinkDemiBruls.Service;
 
 namespace TruthOrDrinkDemiBruls.Views;
 
@@ -50,9 +51,12 @@ public partial class Questions : ContentPage, INotifyPropertyChanged
         }
     }
 
-    public Questions()
+    private GameService _gameService { get; }
+
+    public Questions(GameService gameService)
     {
         InitializeComponent();
+        _gameService = gameService;
         BindingContext = this;
     }
 
@@ -66,11 +70,19 @@ public partial class Questions : ContentPage, INotifyPropertyChanged
     private void QuestionAmountChanged(object sender, ValueChangedEventArgs e)
     {
         QuestionAmount = (int)e.NewValue;
+        _gameService.QuestionAmount = QuestionAmount;
     }
 
     private void QuestionKindChanged(object sender, SelectionChangedEventArgs e)
     {
         _QuestionKind = (string)e.CurrentSelection[0];
+        _gameService.QuestionKind = _QuestionKind switch
+        {
+            "Gepersonaliseerde vragen" => QuestionKind.Personalised,
+            "Gegenereerde vragen" => QuestionKind.Generated,
+            "Beide" => QuestionKind.Both,
+            _ => QuestionKind.Unspecified
+        };
     }
 
     private async void GoToGameOptions(object sender, EventArgs e)

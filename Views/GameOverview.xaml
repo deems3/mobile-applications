@@ -9,42 +9,40 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
-        <FlexLayout Margin="20" Direction="Row" Wrap="Wrap">
-            <FlexLayout.Resources>
-                <Style TargetType="Label">
-                    <Setter Property="FlexLayout.Basis" Value="50%" />
-                </Style>
-                <Style TargetType="CollectionView">
-                    <Setter Property="FlexLayout.Basis" Value="50%" />
-                </Style>
-            </FlexLayout.Resources>
+        <Grid Margin="15" RowSpacing="10" ColumnSpacing="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-            <Label Text="Soort vragen"/>
-            <Label Text="{Binding QuestionKind}"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-            <Label Text="Gewaagdheid vragen" />
-            <Label Text="{Binding QuestionIntensity}"/>
+            <Label Text="Soort vragen" Grid.Row="0" Grid.Column="0"/>
+            <Label Text="{Binding QuestionKindString}" Grid.Row="0" Grid.Column="1"/>
 
-            <Label Text="Aantal vragen" />
-            <Label Text="{Binding QuestionAmount}"/>
+            <Label Text="Gewaagdheid vragen" Grid.Row="1" Grid.Column="0"/>
+            <Label Text="{Binding QuestionIntensityString}" Grid.Row="1" Grid.Column="1"/>
 
-            <Label Text="Gekozen thema's" />
+            <Label Text="Aantal vragen" Grid.Row="2" Grid.Column="0"/>
+            <Label Text="{Binding QuestionAmount}" Grid.Row="2" Grid.Column="1"/>
 
+            <Label Text="Gekozen thema's" Grid.Row="3" Grid.Column="0"/>
             <CollectionView x:Name="ThemesCollectionView"
                             ItemsSource="{Binding Themes}"
+                             Grid.Row="3" Grid.Column="1"
                             >
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <FlexLayout Padding="15" AlignItems="Center" Margin="0, 0, 20, 0">
-                            <Label Text="{Binding Name}" FontSize="20"/>
-                        </FlexLayout>
+                        <Label Text="{Binding Name}"/>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-
-            <Label Text="Aantal vragen" />
-            <Label Text="{Binding QuestionAmount}"/>
-        </FlexLayout>
+        </Grid>
 
         <Button
             x:Name="GameBtn"

@@ -4,14 +4,10 @@ using QuestionKindEnum = TruthOrDrinkDemiBruls.Enums.QuestionKind;
 using QuestionIntensityEnum = TruthOrDrinkDemiBruls.Enums.QuestionIntensity;
 using TruthOrDrinkDemiBruls.Models;
 using TruthOrDrinkDemiBruls.ViewModels;
+using TruthOrDrinkDemiBruls.Service;
 
 namespace TruthOrDrinkDemiBruls.Views;
 
-//[QueryProperty(nameof(_Game), "Game")]
-//[QueryProperty(nameof(Themes), "Themes")]
-//[QueryProperty(nameof(QuestionAmount), "QuestionAmount")]
-//[QueryProperty(nameof(QuestionKind), "QuestionKind")]
-//[QueryProperty(nameof(QuestionIntensity), "QuestionIntensity")]
 public partial class GameOverview : ContentPage
 {
     public string QuestionKindString => QuestionKind switch
@@ -19,7 +15,7 @@ public partial class GameOverview : ContentPage
         QuestionKindEnum.Personalised => "Gepersonaliseerde vragen",
         QuestionKindEnum.Generated => "Gegenereerde vragen",
         QuestionKindEnum.Both => "Beide",
-        _ => ""
+        _ => QuestionKind.ToString()
     };
     public QuestionKindEnum QuestionKind { get; set; }
     public string QuestionIntensityString => QuestionIntensity switch
@@ -37,47 +33,38 @@ public partial class GameOverview : ContentPage
     public List<Theme> Themes { get; set; } = [];
     private GameViewModel ViewModel { get; set; }
 
+    private GameService _gameService { get; }
 
-    public GameOverview(GameViewModel viewModel)
+    public GameOverview(GameViewModel viewModel, GameService gameService)
     {
         InitializeComponent();
-        ViewModel = viewModel;
-        BindingContext = viewModel;
+        _gameService = gameService;
+        QuestionAmount = _gameService.QuestionAmount;
+        QuestionIntensity = _gameService.QuestionIntensity;
+        QuestionKind = _gameService.QuestionKind;
+        _Game = _gameService.Game!;
+        Themes = _gameService.Themes;
+
+        BindingContext = this;
     }
 
     protected override void OnAppearing()
     {
+        // TODO: trigger changes
         base.OnAppearing();
-        Console.WriteLine("OVERVIEW ==========================");
-        Console.WriteLine($"Look this is ViewModel.Game.Code: {_Game?.Code}");
-        Console.WriteLine($"Look this is QuestionAmount: {QuestionAmount}");
-        Console.WriteLine($"Look this is QuestionIntensity: {QuestionIntensity}");
-        Console.WriteLine($"Look this is QuestionKind: {QuestionKind}");
-        Console.WriteLine($"Look this is Themes.Count: {Themes.Count}");
-
-        Console.WriteLine("==========================");
-        Console.WriteLine($"Look this is ViewModel.Game.Code: {ViewModel.Game.Code}");
-        Console.WriteLine($"Look this is QuestionAmount: {ViewModel.QuestionAmount}");
-        Console.WriteLine($"Look this is QuestionIntensity: {ViewModel.QuestionIntensity}");
-        Console.WriteLine($"Look this is QuestionKind: {ViewModel.QuestionKind}");
-        Console.WriteLine($"Look this is Themes.Count: {ViewModel.Themes.Count()}");
-        Console.WriteLine("==========================");
+        QuestionAmount = _gameService.QuestionAmount;
+        QuestionIntensity = _gameService.QuestionIntensity;
+        QuestionKind = _gameService.QuestionKind;
+        _Game = _gameService.Game!;
+        Themes = _gameService.Themes;
+        BindingContext = this;
     }
 
     private async void StartGame(object sender, EventArgs e)
     {
-        Console.WriteLine("OVERVIEW START GAME==========================");
-        Console.WriteLine($"Look this is ViewModel.Game.Code: {_Game?.Code}");
-        Console.WriteLine($"Look this is QuestionAmount: {QuestionAmount}");
-        Console.WriteLine($"Look this is QuestionIntensity: {QuestionIntensity}");
-        Console.WriteLine($"Look this is QuestionKind: {QuestionKind}");
-        Console.WriteLine($"Look this is Themes.Count: {Themes.Count}");
-        Console.WriteLine("==========================");
         // TODO: make call to ChatGpt for the game questions, create some type of ViewModel that contains the question amount etc, so we'll only have to pass one object in the game loop.
-        return;
-        await Shell.Current.GoToAsync("//GameQuestions", new Dictionary<string, object>
-        {
-            { "Game", _Game }
-        });
+        _gameService.StartGame();
+        // Get questions from databse based on categories
+        await Shell.Current.GoToAsync("//GameQuestions"); 
     }
 }

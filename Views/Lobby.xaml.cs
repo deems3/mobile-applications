@@ -3,6 +3,7 @@ using QRCoder;
 using System.Windows.Input;
 using TruthOrDrinkDemiBruls.Database;
 using TruthOrDrinkDemiBruls.Models;
+using TruthOrDrinkDemiBruls.Service;
 using TruthOrDrinkDemiBruls.ViewModels;
 
 namespace TruthOrDrinkDemiBruls.Views;
@@ -15,21 +16,20 @@ public partial class Lobby : ContentPage
     public LobbyViewModel viewModel { get; private set; }
 
     public ICommand UpdatePlayerImageCommand { get; private set; }
+    private GameService _gameService;
 
-    public Lobby(DatabaseContext context)
+    public Lobby(DatabaseContext context, GameService gameService)
     {
         _context = context;
+        _gameService = gameService;
 
         InitializeComponent();
 
         // Generate lobby code
         var code = Guid.NewGuid().ToString("N")[..6];
 
-        // Create new game
-        Game = new Game
-        {
-            Code = code
-        };
+        gameService.InitializeGame(code);
+        Game = gameService.Game!;
 
         //_context.Games.Add(_game);
         //_context.SaveChanges();
@@ -63,9 +63,6 @@ public partial class Lobby : ContentPage
             // TODO: show an erro message indicating that the game requires at least two players
             return;
         }
-
-        _context.Games.Add(Game);
-        _context.SaveChanges();
 
         await Shell.Current.GoToAsync(nameof(GameOptions), new Dictionary<string, object>
         {
@@ -121,14 +118,14 @@ public partial class Lobby : ContentPage
         var imageBytes = memoryStream.ToArray();
         var base64String = Convert.ToBase64String(imageBytes);
 
-        var player = await _context.Players.AsNoTracking().FirstAsync(x => x.Name.ToLower() == name.ToLower());
+        var player = await _context.Players.FirstAsync(x => x.Name.ToLower() == name.ToLower());
         player.ImageContents = base64String;
 
         _context.Players.Update(player);
         await _context.SaveChangesAsync();
 
-        var freshPlayer = await _context.Players.AsNoTracking().FirstAsync(x => x.Name == name);
-
+        var freshPlayer = await _context.Players.FirstAsync(x => x.Name == name);
+        
         viewModel.UpdatePlayerImage(freshPlayer);
     }
 }

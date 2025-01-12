@@ -9,22 +9,22 @@ using System.Threading.Tasks;
 
 namespace TruthOrDrinkDemiBruls.Models
 {
-    public class Player : INotifyPropertyChanged
+    public class Player
     {
         public int Id { get; private set; }
         public string Name { get; set; } = null!;
 
-        public string? imageContents { get; private set; }
 
-        public string? ImageContents { get => imageContents; set
-            {
-                if (imageContents != value)
-                {
-                    imageContents = value;
-                    OnPropertyChanged(nameof(ImageContents));
-                }
-            }
-        }
+        //public string? ImageContents { get => imageContents; set
+        //    {
+        //        if (imageContents != value)
+        //        {
+        //            imageContents = value;
+        //            OnPropertyChanged(nameof(ImageContents));
+        //        }
+        //    }
+        //}
+        public string? ImageContents {get;set; }
 
         [NotMapped]
         public ImageSource? Image

@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using TruthOrDrinkDemiBruls.Database;
 using TruthOrDrinkDemiBruls.Enums;
 using TruthOrDrinkDemiBruls.Models;
+using TruthOrDrinkDemiBruls.Service;
 
 namespace TruthOrDrinkDemiBruls.Views;
 
@@ -22,10 +23,12 @@ public partial class Themes : ContentPage
     public QuestionKind QuestionKind { get; set; }
     public int QuestionAmount { get; set; }
     public QuestionIntensity QuestionIntensity { get; set; }
+    private GameService GameService { get; }
 
-    public Themes(DatabaseContext context)
+    public Themes(DatabaseContext context, GameService gameService)
     {
         // Get all themes from the databse that has not already been selected
+        GameService = gameService;
         AvailableThemes = context.Themes.ToList();
         InitializeComponent();
 
@@ -35,9 +38,9 @@ public partial class Themes : ContentPage
     private void ThemeSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         SelectedThemes = e.CurrentSelection.Cast<Theme>().ToList();
+        GameService.Themes = SelectedThemes;
     }
-
-    private async void GoToGameOptions(object sender, EventArgs e)
+ private async void GoToGameOptions(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync(
             "//GameOptions",

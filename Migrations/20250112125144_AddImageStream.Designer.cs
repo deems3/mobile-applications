@@ -158,43 +158,6 @@ namespace TruthOrDrinkDemiBruls.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Themes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Romantiek & relaties"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Reizen & avontuur"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Persoonlijke geheimen"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Hobby's & interesses"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Familie & vriendschap"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Levenskeuzes & beslissingen"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "Eten & drank"
-                        });
                 });
 
             modelBuilder.Entity("GamePlayer", b =>

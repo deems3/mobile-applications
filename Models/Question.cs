@@ -21,7 +21,7 @@ namespace TruthOrDrinkDemiBruls.Models
         public ICollection<Theme> Themes { get; set; } = [];
 
         // relation to player entity no icollection because the question is linked to one player (optional)
-        public int PlayerId { get; set; }
+        public int? PlayerId { get; set; }
         public Player? Player { get; set; }
 
         public ICollection<GameQuestion> GameQuestions { get; set; } = [];
