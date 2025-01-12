@@ -51,9 +51,6 @@ public partial class Lobby : ContentPage
 
         viewModel = new LobbyViewModel(Game);
 
-        // TODO: remove this, only present for development purposes
-        AddPlayer("k");
-        AddPlayer("j");
         UpdatePlayerImageCommand = new Command<string>(UpdatePlayerImage);
 
         BindingContext = viewModel;
@@ -86,19 +83,6 @@ public partial class Lobby : ContentPage
 
         // Get the player from the database if it exists, otherwise create a new Player entity
         var player = await _context.Players.FirstOrDefaultAsync(x => x.Name.ToLower() == data.ToLower()) ?? new Player
-        {
-            Name = data
-        };
-
-        _context.Players.Update(player);
-
-        // Add the player to the viewmodel to show it is selected
-        viewModel.AddPlayer(player);
-    }
-
-    private void AddPlayer(string data)
-    {
-        var player =  _context.Players.FirstOrDefault(x => x.Name.ToLower() == data.ToLower()) ?? new Player
         {
             Name = data
         };
@@ -137,11 +121,14 @@ public partial class Lobby : ContentPage
         var imageBytes = memoryStream.ToArray();
         var base64String = Convert.ToBase64String(imageBytes);
 
-        var player = await _context.Players.FirstAsync(x => x.Name.ToLower() == name.ToLower());
+        var player = await _context.Players.AsNoTracking().FirstAsync(x => x.Name.ToLower() == name.ToLower());
         player.ImageContents = base64String;
 
         _context.Players.Update(player);
         await _context.SaveChangesAsync();
-        viewModel.UpdatePlayerImage(player);
+
+        var freshPlayer = await _context.Players.AsNoTracking().FirstAsync(x => x.Name == name);
+
+        viewModel.UpdatePlayerImage(freshPlayer);
     }
 }
