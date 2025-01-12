@@ -1,9 +1,10 @@
-﻿using System.Collections.ObjectModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.Collections.ObjectModel;
 using TruthOrDrinkDemiBruls.Enums;
 using TruthOrDrinkDemiBruls.Models;
 
 namespace TruthOrDrinkDemiBruls.ViewModels;
-public class GameOptionsViewModel
+public class GameOptionsViewModel : ObservableObject
 {
     public Game Game { get; set; }
 

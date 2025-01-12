@@ -10,12 +10,14 @@ public class LobbyViewModel
     public Game Game { get; private set; }
 
     public ICommand DeletePlayerCommand { get; private set; }
+    public ICommand UpdatePlayerImageCommand { get; private set; }
 
     public LobbyViewModel(Game game)
     {
         Game = game;
         // Command allows an action to be called with parameters (e.g. the player's name)
         DeletePlayerCommand = new Command<string>(DeletePlayerFromGame);
+        UpdatePlayerImageCommand = new Command<Player>(UpdatePlayerImage);
     }
 
     public void AddPlayer(Player player)
@@ -28,6 +30,18 @@ public class LobbyViewModel
         {
             PlayersForDisplay.Add(player);
         }
+    }
+
+    public void UpdatePlayerImage(Player player)
+    {
+        var gamePlayer = Game.Players.First(x => x.Id == player.Id);
+        gamePlayer.ImageContents = player.ImageContents;
+
+        var displayPlayer = PlayersForDisplay.First(x => x.Id == player.Id);
+        displayPlayer.ImageContents = player.ImageContents;
+
+        PlayersForDisplay.Remove(displayPlayer);
+        PlayersForDisplay.Add(displayPlayer);
     }
 
     private void DeletePlayerFromGame(string name)

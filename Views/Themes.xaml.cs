@@ -6,17 +6,17 @@ using TruthOrDrinkDemiBruls.Models;
 namespace TruthOrDrinkDemiBruls.Views;
 
 [QueryProperty(nameof(Game), "Game")]
-[QueryProperty(nameof(List<Theme>), "InitialThemes")]
+[QueryProperty(nameof(InitialThemes), "InitialThemes")]
 [QueryProperty(nameof(QuestionKind), "QuestionKind")]
 [QueryProperty(nameof(QuestionIntensity), "QuestionIntensity")]
-[QueryProperty(nameof(Int32), "QuestionAmount")]
+[QueryProperty(nameof(QuestionAmount), "QuestionAmount")]
 public partial class Themes : ContentPage
 {
     public Game Game { get; set; }
 
-    public ICollection<Theme> InitialThemes { get; set; } = [];
+    public List<Theme> InitialThemes { get; set; } = [];
 
-    public ICollection<Theme> AvailableThemes { get; set; } = [];
+    public List<Theme> AvailableThemes { get; set; } = [];
 
     public List<Theme> SelectedThemes { get; set; }
     public QuestionKind QuestionKind { get; set; }
@@ -34,7 +34,7 @@ public partial class Themes : ContentPage
 
     private void ThemeSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        SelectedThemes = e.CurrentSelection as object as List<Theme>;
+        SelectedThemes = e.CurrentSelection.Cast<Theme>().ToList();
     }
 
     private async void GoToGameOptions(object sender, EventArgs e)
@@ -44,7 +44,7 @@ public partial class Themes : ContentPage
             new Dictionary<string, object>
             {
                 { "Game", Game },
-                { "Themes", SelectedThemes },
+                { "Themes", SelectedThemes.ToList() },
                 { "QuestionAmount", QuestionAmount },
                 { "QuestionKind", QuestionKind },
                 { "QuestionIntensity", QuestionIntensity }

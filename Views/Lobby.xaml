@@ -3,47 +3,70 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:TruthOrDrinkDemiBruls.ViewModels"
              x:Class="TruthOrDrinkDemiBruls.Views.Lobby"
+             x:Name="this"
              Title="Lobby">
-    <VerticalStackLayout>
-        <Image
-            x:Name="QRImage"
-            HeightRequest="200"
-            WidthRequest="200" />
+    <ScrollView>
+        <VerticalStackLayout>
+            <Image
+                x:Name="QRImage"
+                Aspect="AspectFill"
+                HeightRequest="200"
+                WidthRequest="200" />
 
-        <Label
-            Text="Laat je vrienden Scannen!"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            FontSize="Large"/>
+            <Label
+                Text="Laat je vrienden Scannen!"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                FontSize="Large"/>
 
-        <!-- Display the list of players -->
-        <CollectionView x:Name="PlayersCollectionView" ItemsSource="{Binding PlayersForDisplay}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <FlexLayout Padding="10" AlignItems="Center" Margin="0, 0, 20, 0">
-                        <Label Text="{Binding Name}" FontSize="20" FlexLayout.Basis="50%"/>
-                        <Button
-                            x:Name="DeleteBtn"
-                            Text="Verwijderen"
-                            FlexLayout.Basis="50%"
-                            CommandParameter="{Binding Name}"
-                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:LobbyViewModel}}, Path=DeletePlayerCommand}" />
-                    </FlexLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+            <!-- Display the list of players -->
+            <CollectionView x:Name="PlayersCollectionView" ItemsSource="{Binding PlayersForDisplay}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
 
-        <Button
-            x:Name="AddPlayerBtn"
-            Margin="0, 20, 0, 0"
-            Text="Voeg speler toe"
-            Clicked="ShowAddPlayerInput"/>
-        
-        <!-- TODO: pass in the current game to the new view -->
-        <Button
-            x:Name="ContinueBtn"
-            Text="Verder"
-            Margin="0, 50, 0, 0"
-            Clicked="GoToGameOptions"/>
-    </VerticalStackLayout>
+                        <Grid Margin="15" RowSpacing="10" ColumnSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Image x:Name="Image" Source="{Binding Image}" Grid.Row="0" Grid.Column="0"/>
+                            <Button
+                                x:Name="ChangeImageBtn"
+                                Text="Wijzig afbeelding"
+                                Grid.Row="0" Grid.Column="1"
+                                CommandParameter="{Binding Name}"
+                                Command="{Binding Source={x:Reference this}, Path=UpdatePlayerImageCommand}"/>
+
+                            <Label Text="{Binding Name}" FontSize="20" Grid.Row="1" Grid.Column="0"/>
+                            <Button
+                                x:Name="DeleteBtn"
+                                Text="Verwijderen"
+                                Grid.Row="1" Grid.Column="1"
+                                CommandParameter="{Binding Name}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:LobbyViewModel}}, Path=DeletePlayerCommand}" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button
+                x:Name="AddPlayerBtn"
+                Margin="0, 20, 0, 0"
+                Text="Voeg speler toe"
+                Clicked="ShowAddPlayerInput"/>
+
+            <!-- TODO: pass in the current game to the new view -->
+            <Button
+                x:Name="ContinueBtn"
+                Text="Verder"
+                Margin="0, 50, 0, 0"
+                Clicked="GoToGameOptions"/>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

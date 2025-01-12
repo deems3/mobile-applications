@@ -3,9 +3,9 @@ using TruthOrDrinkDemiBruls.Models;
 
 namespace TruthOrDrinkDemiBruls.Views;
 
-[QueryProperty(nameof(Int32), "QuestionAmount")]
+[QueryProperty(nameof(QuestionAmount), "QuestionAmount")]
 [QueryProperty(nameof(QuestionKind), "QuestionKind")]
-[QueryProperty(nameof(List<Theme>), "Themes")]
+[QueryProperty(nameof(Themes), "Themes")]
 [QueryProperty(nameof(Game), "Game")]
 [QueryProperty(nameof(SelectedQuestionIntensity), "SelectedQuestionIntensity")]
 public partial class Intensity : ContentPage
@@ -30,12 +30,6 @@ public partial class Intensity : ContentPage
 		BindingContext = this;
 	}
 
-    protected override void OnAppearing()
-    {
-        base.OnAppearing();
-        Console.WriteLine($"Look at the {Bla}!");
-    }
-
     private void QuestionIntensitChanged(object sender, SelectionChangedEventArgs e)
     {
 		SelectedQuestionIntensity = (string)e.CurrentSelection[0];
@@ -54,7 +48,7 @@ public partial class Intensity : ContentPage
                 { "QuestionIntensity", SelectedQuestionIntensity switch {
                         "Gemakkelijk" => QuestionIntensity.Easy,
                         "Gemiddeld" => QuestionIntensity.Average,
-                        "Moeijlijk" => QuestionIntensity.Challenging,
+                        "Moeilijk" => QuestionIntensity.Challenging,
                         "Uitdagend" => QuestionIntensity.Daring,
                         "Extreem" => QuestionIntensity.Extreme,
                         _ => QuestionIntensity.Unspecified

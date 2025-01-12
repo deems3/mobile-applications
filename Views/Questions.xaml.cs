@@ -4,10 +4,10 @@ using TruthOrDrinkDemiBruls.Models;
 
 namespace TruthOrDrinkDemiBruls.Views;
 
-[QueryProperty(nameof(Int32), "QuestionAmount")]
-[QueryProperty(nameof(String), "QuestionKind")]
-[QueryProperty(nameof(List<Theme>), "Themes")]
-[QueryProperty(nameof(Game), "Game")]
+[QueryProperty(nameof(QuestionAmount), "QuestionAmount")]
+[QueryProperty(nameof(_QuestionKind), "QuestionKind")]
+[QueryProperty(nameof(Themes), "Themes")]
+[QueryProperty(nameof(_Game), "Game")]
 [QueryProperty(nameof(QuestionIntensity), "QuestionIntensity")]
 public partial class Questions : ContentPage, INotifyPropertyChanged
 {
@@ -26,7 +26,7 @@ public partial class Questions : ContentPage, INotifyPropertyChanged
     }
 
     public List<Theme> Themes { get; set; }
-    public Game Game { get; set; }
+    public Game _Game { get; set; }
     public QuestionIntensity QuestionIntensity { get; set; }
 
     public List<string> QuestionKinds { get; } = new List<string>
@@ -79,7 +79,7 @@ public partial class Questions : ContentPage, INotifyPropertyChanged
             "//GameOptions",
             new Dictionary<string, object>
             {
-                { "Game", Game },
+                { "Game", _Game },
                 { "Themes", Themes },
                 { "QuestionAmount", QuestionAmount },
                 { "QuestionIntensity", QuestionIntensity },

@@ -10,11 +10,11 @@ namespace TruthOrDrinkDemiBruls.Views;
 
 // Query properties are needed in order to pass parameters to this view when navigating
 // First parameter is the type of the property, the second parameter is the name of the parameter when navigating (which is also the name of the property on the class) (see line 44 for an example)
-[QueryProperty(nameof(Game), "Game")]
-[QueryProperty(nameof(List<Theme>), "Themes")]
-[QueryProperty(nameof(QuestionKindEnum), "QuestionKind")]
-[QueryProperty(nameof(QuestionIntensityEnum), "QuestionIntensity")]
-[QueryProperty(nameof(Int32), "QuestionAmount")]
+[QueryProperty(nameof(_Game), "Game")]
+[QueryProperty(nameof(Themes), "Themes")]
+[QueryProperty(nameof(QuestionKind), "QuestionKind")]
+[QueryProperty(nameof(QuestionIntensity), "QuestionIntensity")]
+[QueryProperty(nameof(QuestionAmount), "QuestionAmount")]
 public partial class GameOptions : ContentPage
 {
     public Game _Game
@@ -25,25 +25,39 @@ public partial class GameOptions : ContentPage
         }
     }
 
-    public ICollection<Theme> Themes
+    public List<Theme> Themes
     {
-        get => ViewModel.SelectedThemes;
+        get => ViewModel.SelectedThemes.ToList();
         set
         {
-            SetThemes(value);
+            ViewModel.SelectedThemes = new ObservableCollection<Theme>(value ?? []);
         }
     }
 
-    public QuestionKindEnum QuestionKind { 
-        get => ViewModel.QuestionKind; 
+    public QuestionKindEnum QuestionKind
+    {
+        get => ViewModel.QuestionKind;
         set
         {
             ViewModel.QuestionKind = value;
         }
     }
-    public QuestionIntensityEnum QuestionIntensity { get; set; }
-    public int QuestionAmount { get; set; }
-    public Game Game { get; set; }
+    public QuestionIntensityEnum QuestionIntensity
+    {
+        get => ViewModel.QuestionIntensity;
+        set
+        {
+            ViewModel.QuestionIntensity = value;
+        }
+    }
+    public int QuestionAmount
+    {
+        get => ViewModel.QuestionAmount;
+        set
+        {
+            ViewModel.QuestionAmount = value;
+        }
+    }
 
     public GameOptionsViewModel ViewModel { get; private set; }
 
@@ -56,6 +70,18 @@ public partial class GameOptions : ContentPage
         BindingContext = ViewModel;
     }
 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        Console.WriteLine("==========================");
+        Console.WriteLine($"Look this is ViewModel.Game.Code: {ViewModel.Game?.Code}");
+        Console.WriteLine($"Look this is QuestionAmount: {QuestionAmount}");
+        Console.WriteLine($"Look this is QuestionIntensity: {QuestionIntensity}");
+        Console.WriteLine($"Look this is QuestionKind: {QuestionKind}");
+        Console.WriteLine($"Look this is Themes.Count: {ViewModel.SelectedThemes.Count}");
+        Console.WriteLine("==========================");
+    }
+
     private async void GoToThemes(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync(
@@ -63,7 +89,7 @@ public partial class GameOptions : ContentPage
             new Dictionary<string, object>
             {
                 { "Game", ViewModel.Game },
-                { "InitialThemes", ViewModel.SelectedThemes },
+                { "InitialThemes", ViewModel.SelectedThemes.ToList() },
                 { "QuestionAmount", QuestionAmount },
                 { "QuestionKind", QuestionKind },
                 { "QuestionIntensity", QuestionIntensity }
@@ -78,7 +104,7 @@ public partial class GameOptions : ContentPage
             new Dictionary<string, object>
             {
                 { "Game", ViewModel.Game },
-                { "Themes", ViewModel.SelectedThemes },
+                { "Themes", ViewModel.SelectedThemes.ToList() },
                 { "QuestionAmount", QuestionAmount },
                 { "QuestionIntensity", QuestionIntensity },
                 { "QuestionKind", QuestionKind switch {
@@ -114,10 +140,10 @@ public partial class GameOptions : ContentPage
             new Dictionary<string, object>
             {
                 { "Game", ViewModel.Game },
-                { "InitialThemes", ViewModel.SelectedThemes },
+                { "InitialThemes", ViewModel.SelectedThemes.ToList() },
                 { "QuestionAmount", QuestionAmount },
                 { "QuestionKind", QuestionKind },
-                { 
+                {
                     "QuestionIntensity",
                     QuestionIntensity switch
                     {
@@ -136,17 +162,5 @@ public partial class GameOptions : ContentPage
     private void SetGame(Game game)
     {
         ViewModel.Game = game;
-    }
-
-    private void SetThemes(ICollection<Theme> themes)
-    {
-        // If no themes are provided when navigating to this view, set the selected themes to be an empty ObservableCollection
-        if (themes.Count == 0)
-        {
-            ViewModel.SelectedThemes = new ObservableCollection<Theme>();
-            return;
-        }
-
-        ViewModel.SelectedThemes = new ObservableCollection<Theme>(themes);
     }
 }

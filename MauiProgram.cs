@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -6,6 +7,7 @@ using System.Reflection;
 using TruthOrDrinkDemiBruls.Client;
 using TruthOrDrinkDemiBruls.Config;
 using TruthOrDrinkDemiBruls.Database;
+using TruthOrDrinkDemiBruls.ViewModels;
 using TruthOrDrinkDemiBruls.Views;
 
 namespace TruthOrDrinkDemiBruls
@@ -57,13 +59,27 @@ namespace TruthOrDrinkDemiBruls
                 return new GiphyConfig { ApiKey = config["ApiKey"]! };
             });
 
+
+            // Register the pages to the ServiceCollection
+            builder.Services.AddSingleton<WaitPage>();
+            builder.Services.AddSingleton<WaitingPageViewModel>();
+            builder.Services.AddSingleton<Lobby>();
+            builder.Services.AddSingleton<LobbyViewModel>();
+            builder.Services.AddSingleton<Intensity>();
+            builder.Services.AddSingleton<GameOptions>();
+            builder.Services.AddSingleton<GameOptionsViewModel>();
+            builder.Services.AddSingleton<GameViewModel>();
+            builder.Services.AddSingleton<Questions>();
+            builder.Services.AddSingleton<Themes>();
+            builder.Services.AddSingleton<GameOverview>();
+
+
             // Register the HttpClient as singleton in the service collection so we can inject it via the constructor in the code base
             builder.Services.AddSingleton<HttpClient>();
             // Register the GiphyClient to the service collection so we can inject it via the constructor in the code base
             builder.Services.AddSingleton<GiphyClient>();
             builder.Services.AddDbContext<DatabaseContext>();
             var dbContext = new DatabaseContext();
-            dbContext.Database.EnsureCreated();
             dbContext.Dispose();
 
             // Inject all pages that require the database
@@ -72,7 +88,22 @@ namespace TruthOrDrinkDemiBruls
             builder.Logging.AddDebug();
 #endif
 
-            return builder.Build();
+            var host = builder.Build();
+
+            using (var scope = host.Services.CreateScope())
+            {
+                var db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+                var pendingMigrations = db.Database.GetPendingMigrations();
+
+                if (!pendingMigrations.Any())
+                {
+                    return host;
+                }
+
+                db.Database.Migrate();
+            }
+
+            return host;
         }
     }
 }
