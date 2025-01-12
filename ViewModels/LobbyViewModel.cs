@@ -35,13 +35,13 @@ public class LobbyViewModel
     public void UpdatePlayerImage(Player player)
     {
         var gamePlayer = Game.Players.First(x => x.Id == player.Id);
-        gamePlayer.ImageContents = player.ImageContents;
+        Game.Players.Remove(gamePlayer);
+        Game.Players.Add(player);
 
         var displayPlayer = PlayersForDisplay.First(x => x.Id == player.Id);
-        displayPlayer.ImageContents = player.ImageContents;
 
         PlayersForDisplay.Remove(displayPlayer);
-        PlayersForDisplay.Add(displayPlayer);
+        PlayersForDisplay.Add(gamePlayer);
     }
 
     private void DeletePlayerFromGame(string name)
