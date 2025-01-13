@@ -5,6 +5,7 @@ using QuestionIntensityEnum = TruthOrDrinkDemiBruls.Enums.QuestionIntensity;
 using TruthOrDrinkDemiBruls.Models;
 using TruthOrDrinkDemiBruls.ViewModels;
 using TruthOrDrinkDemiBruls.Service;
+using Plugin.LocalNotification;
 
 namespace TruthOrDrinkDemiBruls.Views;
 
@@ -64,11 +65,27 @@ public partial class GameOverview : ContentPage
     {
         // TODO: make call to ChatGpt for the game questions, create some type of ViewModel that contains the question amount etc, so we'll only have to pass one object in the game loop.
         _gameService.StartGame();
-        // Get questions from databse based on categories
+
+        var request = new NotificationRequest
+        {
+            NotificationId = 1000,
+            Title = "Have fun!",
+            Subtitle = "Please enjoy the game!",
+            Description = "",
+            Schedule = new NotificationRequestSchedule
+            {
+                NotifyTime = DateTime.Now.AddSeconds(1)
+            },
+        };
+
+        await LocalNotificationCenter.Current.Show(request);
+
+
         await Shell.Current.GoToAsync("//GameQuestions", new Dictionary<string, object>
         {
             { "Player", _gameService.PlayerToAnswer! },
             { "Question", _gameService.QuestionToAnswer!.Question }
         });
+
     }
 }

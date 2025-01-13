@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Plugin.LocalNotification;
 using System.Reflection;
 using TruthOrDrinkDemiBruls.Client;
 using TruthOrDrinkDemiBruls.Config;
@@ -46,6 +47,7 @@ namespace TruthOrDrinkDemiBruls
 
             builder
                 .UseMauiApp<App>()
+                .UseLocalNotification()
                 .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
