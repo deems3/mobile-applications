@@ -46,6 +46,7 @@ public partial class GameQuestions : ContentPage
         if (_gameService.QuestionToAnswer == null)
         {
             await Shell.Current.GoToAsync("TheEndPage");
+            return;
         }
         // Get an image from Giphy
         var img = await giphy.Random("telling truth");
@@ -63,6 +64,7 @@ public partial class GameQuestions : ContentPage
         if (_gameService.QuestionToAnswer == null)
         {
             await Shell.Current.GoToAsync("TheEndPage");
+            return;
         }
 
         var img = await giphy.Random("drinking");

@@ -4,11 +4,7 @@
              x:Class="TruthOrDrinkDemiBruls.Views.TheEndPage"
              Title="TheEndPage">
     <VerticalStackLayout>
-        <Label 
-            Text="The End"
-            FontSize="Large"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Image Source="https://static.vecteezy.com/system/resources/thumbnails/045/709/729/small_2x/vintage-chalk-the-end-free-video.jpg" WidthRequest="250"/>
 
         <Button
             x:Name="NewGameBtn"

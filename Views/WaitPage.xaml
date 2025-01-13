@@ -15,7 +15,7 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
-        <Image Source="{Binding ImageUrl}" IsAnimationPlaying="True"/>
+        <Image Source="{Binding ImageUrl}" WidthRequest="300" HeightRequest="300" Aspect="AspectFill" IsAnimationPlaying="True"/>
 
         <Button
             x:Name="NextQuestion"

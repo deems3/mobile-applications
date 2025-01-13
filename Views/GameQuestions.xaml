@@ -10,18 +10,21 @@
     <VerticalStackLayout Margin="20">
         <Label 
             Text="De vraag is:"
+            FontSize="20"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
         <Label 
             x:Name="QuestionDescription"
             Text="{Binding Question.Description}"
             HorizontalTextAlignment="Center"
-            FontSize="25"
+            FontSize="20"
             VerticalOptions="Center" 
+            Margin="0, 0, 0, 20"
             HorizontalOptions="Center" />
 
         <Label 
             Text="De vraag is voor:"
+            FontSize="20"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
@@ -29,7 +32,7 @@
         <Label 
             x:Name="PlayerName"
             Text="{Binding Player.Name}"
-            FontSize="25"
+            FontSize="20"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
