@@ -4,11 +4,6 @@
              x:Class="TruthOrDrinkDemiBruls.Views.Intensity"
              Title="Gewaagdheidslevel">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-
         <CollectionView x:Name="QuestionIntensityCollectionView"
                         ItemsSource="{Binding AvailableQuestionIntensities}"
                         SelectionMode="Single"

@@ -2,15 +2,34 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TruthOrDrinkDemiBruls.Views.GameQuestions"
+             xmlns:local="clr-namespace:TruthOrDrinkDemiBruls.ViewModels"
              Title="GameQuestions">
-    <VerticalStackLayout>
+    <ContentPage.BindingContext>
+        <local:GameQuestionViewModel />
+    </ContentPage.BindingContext>
+    <VerticalStackLayout Margin="20">
         <Label 
             Text="De vraag is:"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Label 
+            x:Name="QuestionDescription"
+            Text="{Binding Question.Description}"
+            HorizontalTextAlignment="Center"
+            FontSize="25"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
         <Label 
             Text="De vraag is voor:"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <Image x:Name="Image" HeightRequest="200" Source="{Binding Player.Image}" Grid.Row="0" Grid.Column="0"/>
+        <Label 
+            x:Name="PlayerName"
+            Text="{Binding Player.Name}"
+            FontSize="25"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 

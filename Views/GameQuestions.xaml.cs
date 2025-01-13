@@ -1,18 +1,52 @@
 using TruthOrDrinkDemiBruls.Client;
+using TruthOrDrinkDemiBruls.Models;
+using TruthOrDrinkDemiBruls.Service;
+using TruthOrDrinkDemiBruls.ViewModels;
 
 namespace TruthOrDrinkDemiBruls.Views;
 
+[QueryProperty(nameof(Player), "Player")]
+[QueryProperty(nameof(Question), "Question")]
 public partial class GameQuestions : ContentPage
 {
     private GiphyClient giphy;
-    public GameQuestions(GiphyClient giphyClient)
+    private GameService _gameService;
+    public Player Player
+    {
+        set
+        {
+            ViewModel.Player = value;
+        }
+    }
+
+    public Question Question
+    {
+        set
+        {
+            ViewModel.Question = value;
+        }
+    }
+
+    public GameQuestionViewModel ViewModel;
+
+    public GameQuestions(GiphyClient giphyClient, GameService gameService)
     {
         giphy = giphyClient;
+        _gameService = gameService;
+        ViewModel = new();
         InitializeComponent();
+
+        BindingContext = ViewModel;
     }
 
     private async void GoToWaitPageTruth(object sender, EventArgs e)
     {
+        AnswerQuestionAndNext();
+
+        if (_gameService.QuestionToAnswer == null)
+        {
+            await Shell.Current.GoToAsync("TheEndPage");
+        }
         // Get an image from Giphy
         var img = await giphy.Random("telling truth");
 
@@ -24,11 +58,25 @@ public partial class GameQuestions : ContentPage
     }
     private async void GoToWaitPageDrink(object sender, EventArgs e)
     {
+        AnswerQuestionAndNext();
+
+        if (_gameService.QuestionToAnswer == null)
+        {
+            await Shell.Current.GoToAsync("TheEndPage");
+        }
+
         var img = await giphy.Random("drinking");
 
         await Shell.Current.GoToAsync("WaitPage", new Dictionary<string, object>
         {
             { "Image", img.Data }
         });
+    }
+
+    private void AnswerQuestionAndNext()
+    {
+        _gameService.AnswerQuestion();
+        _gameService.SetPlayerToAnswer();
+        _gameService.SetNextQuestionToAnswer();
     }
 }

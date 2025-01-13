@@ -65,6 +65,10 @@ public partial class GameOverview : ContentPage
         // TODO: make call to ChatGpt for the game questions, create some type of ViewModel that contains the question amount etc, so we'll only have to pass one object in the game loop.
         _gameService.StartGame();
         // Get questions from databse based on categories
-        await Shell.Current.GoToAsync("//GameQuestions"); 
+        await Shell.Current.GoToAsync("//GameQuestions", new Dictionary<string, object>
+        {
+            { "Player", _gameService.PlayerToAnswer! },
+            { "Question", _gameService.QuestionToAnswer!.Question }
+        });
     }
 }

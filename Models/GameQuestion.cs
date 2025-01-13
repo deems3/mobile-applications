@@ -16,8 +16,8 @@ namespace TruthOrDrinkDemiBruls.Models
         public int QuestionId { get; set; }
         public Question Question { get; set; } = null!;
 
-        public int PlayerId { get; set; }
-        public Player Player { get; set; } = null!;
+        public int? PlayerId { get; set; }
+        public Player? Player { get; set; }
         // TODO : Answer
     }
 }

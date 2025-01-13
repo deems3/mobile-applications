@@ -4,11 +4,6 @@
              x:Class="TruthOrDrinkDemiBruls.Views.GameOptions"
              Title="GameOptions">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-
         <Button
             x:Name="ThemeBtn"
             Text="Thema"

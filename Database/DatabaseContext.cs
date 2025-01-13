@@ -22,46 +22,4 @@ public class DatabaseContext : DbContext
         var connectionDb = $"Filename={Helper.GetDbPath("truth_or_drink_demi.db")}";
         optionsBuilder.UseSqlite(connectionDb);
     }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        //modelBuilder.Entity<Theme>()
-        //    .HasData(
-        //        new Theme
-        //        {
-        //            Id = 1,
-        //            Name = "Romantiek & relaties"
-        //        },
-        //        new Theme
-        //        {
-        //            Id = 2,
-        //            Name = "Reizen & avontuur"
-        //        },
-        //        new Theme
-        //        {
-        //            Id = 3,
-        //            Name = "Persoonlijke geheimen"
-        //        },
-        //        new Theme
-        //        {
-        //            Id = 4,
-        //            Name = "Hobby's & interesses"
-        //        },
-        //        new Theme
-        //        {
-        //            Id = 5,
-        //            Name = "Familie & vriendschap"
-        //        },
-        //        new Theme
-        //        {
-        //            Id = 6,
-        //            Name = "Levenskeuzes & beslissingen"
-        //        },
-        //        new Theme
-        //        {
-        //            Id = 7,
-        //            Name = "Eten & drank"
-        //        }
-        //    );
-    }
 }
